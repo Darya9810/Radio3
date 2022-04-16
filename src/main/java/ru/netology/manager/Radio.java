@@ -1,59 +1,78 @@
 package ru.netology.manager;
 
 public class Radio {
-    private int currentNumberStation;
-    private int enteredNumberStation;
-    private int currentSoundVolume;
+    private int currentStation;
+    private int currentVolume;
+    private final int minStation = 0;
+    private final int maxStation = 9;
+    private final int minVolume = 0;
+    private final int maxVolume = 10;
 
-    public void setCurrentNumberStation(int currentNumberStation) {
-        this.currentNumberStation = currentNumberStation;
+    public int getMinStation() {
+        return minStation;
     }
 
-    public int getCurrentNumberStation() {
-        return currentNumberStation;
+    public int getMaxStation() {
+        return maxStation;
     }
 
-    public void setCurrentSoundVolume(int currentSoundVolume) {
-        this.currentSoundVolume = currentSoundVolume;
+    public int getMinVolume() {
+        return minVolume;
     }
 
-    public int getCurrentSoundVolume() {
-        return currentSoundVolume;
+    public int getMaxVolume() {
+        return maxVolume;
     }
 
-    public void numberStationNext() {
-        if (currentNumberStation == 9) {
-            this.currentNumberStation = 0;
-            return;}
-        currentNumberStation++;
-        return;
+    public int getCurrentStation() {
+        return currentStation;
     }
 
-    public void numberStationPrev() {
-        if (currentNumberStation == 0) currentNumberStation = 10;
-        currentNumberStation--;
-        return;
+    public int getCurrentVolume() {
+        return currentVolume;
     }
 
-    public void volumeStationUp() {
-        if (currentSoundVolume >= 10) {
-            currentSoundVolume = 10;
-            return;
-        } else {
-            currentSoundVolume++;
+    public void setCurrentStation(int currentStation) {
+        if (currentStation > maxStation) {
             return;
         }
-
-    }
-
-    public void volumeStationDoun() {
-        if (currentSoundVolume <= 0) {
-            currentSoundVolume = 0;
-            return;
-        } else {
-            currentSoundVolume--;
+        if (currentStation < minStation) {
             return;
         }
+        this.currentStation = currentStation;
+    }
+
+    public void setCurrentVolume(int currentVolume) {
+        if (currentVolume > maxVolume) {
+            return;
+        }
+        if (currentVolume < minVolume) {
+            return;
+        }
+        this.currentVolume = currentVolume;
+    }
+
+    public void increaseCurrentVolume() {
+        if (currentVolume < maxVolume) currentVolume++;
+    }
+
+    public void decreaseCurrentVolume() {
+        if (currentVolume > minVolume) currentVolume--;
+    }
+
+    public void nextStation() {
+        if (currentStation == maxStation) {
+            currentStation = minStation;
+            return;
+        }
+        currentStation++;
+    }
+
+    public void prevStation() {
+        if (currentStation == minStation) {
+            currentStation = maxStation;
+            return;
+        }
+        currentStation--;
     }
 }
-
