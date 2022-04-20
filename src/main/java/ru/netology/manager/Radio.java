@@ -1,59 +1,63 @@
 package ru.netology.manager;
 
 public class Radio {
-    private int currentNumberStation;
-    private int enteredNumberStation;
-    private int currentSoundVolume;
+    private int currentRadioStation; //текущая радиостанция
+    private int currentVolume; // текущую громкость
+    private int numberRadioStation = 10 - 1; //количество радиостанций
 
-    public void setCurrentNumberStation(int currentNumberStation) {
-        this.currentNumberStation = currentNumberStation;
+    public Radio(int numberRadioStation) {
+        this.numberRadioStation = numberRadioStation - 1;
     }
 
-    public int getCurrentNumberStation() {
-        return currentNumberStation;
+    public Radio() {
+
     }
 
-    public void setCurrentSoundVolume(int currentSoundVolume) {
-        this.currentSoundVolume = currentSoundVolume;
+    public int getNumberChanel() {
+        return this.numberRadioStation;
     }
 
-    public int getCurrentSoundVolume() {
-        return currentSoundVolume;
+    public int getCurrentRadioStation() {
+        return currentRadioStation;
     }
 
-    public void numberStationNext() {
-        if (currentNumberStation == 9) {
-            this.currentNumberStation = 0;
-            return;}
-        currentNumberStation++;
-        return;
-    }
-
-    public void numberStationPrev() {
-        if (currentNumberStation == 0) currentNumberStation = 10;
-        currentNumberStation--;
-        return;
-    }
-
-    public void volumeStationUp() {
-        if (currentSoundVolume >= 10) {
-            currentSoundVolume = 10;
-            return;
-        } else {
-            currentSoundVolume++;
-            return;
+    public void setCurrentRadioStation(int currentChanel) {
+        if (currentChanel < 0) {
+            currentChanel = 9;
         }
-
+        if (currentChanel > 9) {
+            currentChanel = 0;
+        }
+        this.currentRadioStation = currentChanel;
     }
 
-    public void volumeStationDoun() {
-        if (currentSoundVolume <= 0) {
-            currentSoundVolume = 0;
-            return;
-        } else {
-            currentSoundVolume--;
-            return;
+    public void next() {
+        setCurrentRadioStation(currentRadioStation = currentRadioStation + 1);
+    }
+
+    public void prev() {
+        setCurrentRadioStation(currentRadioStation = currentRadioStation - 1);
+    }
+
+    public int getCurrentVolume() {
+        return currentVolume;
+    }
+
+    public void setCurrentVolume(int currentVolume) {
+        if (currentVolume < 0) {
+            currentVolume = 0;
         }
+        if (currentVolume > 100) {
+            currentVolume = 100;
+        }
+        this.currentVolume = currentVolume;
+    }
+
+    public void up() {
+        setCurrentVolume(currentVolume = currentVolume + 1);
+    }
+
+    public void down() {
+        setCurrentVolume(currentVolume = currentVolume - 1);
     }
 }
-
